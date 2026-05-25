@@ -3,12 +3,13 @@ import { GoogleGenAI, Type } from "@google/genai";
 import type { Settings, Scene } from '../types';
 
 // IMPORTANT: This check is a placeholder. In a real environment, the API key would be set.
-if (!process.env.API_KEY) {
+let apiKey = process.env.API_KEY;
+if (!apiKey) {
     console.warn("API_KEY environment variable not set. Using a placeholder.");
-    process.env.API_KEY = "YOUR_API_KEY_HERE";
+    apiKey = "YOUR_API_KEY_HERE";
 }
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const ai = new GoogleGenAI({ apiKey: apiKey });
 
 const responseSchema = {
     type: Type.OBJECT,
